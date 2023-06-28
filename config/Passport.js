@@ -3,13 +3,14 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 var LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/User");
 
+const frontEndSv = "https://notememo-frontend-minified.onrender.com";
+
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL:
-        "https://notememo-backend-production.up.railway.app/auth/google/notememo",
+      callbackURL: frontEndSv,
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {

@@ -9,12 +9,13 @@ const authRoutes = require("./routes/authRoutes");
 const noteRoutes = require("./routes/noteRoutes");
 require("./config/Passport");
 const PORT = process.env.PORT || 3001;
+const frontEndSv = "https://notememo-frontend-minified.onrender.com";
 
 const app = express();
 
 app.use(
   cors({
-    origin: "https://notememo-frontend-minified-production.up.railway.app",
+    origin: frontEndSv,
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

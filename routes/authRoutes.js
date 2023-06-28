@@ -4,8 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const crypto = require("crypto");
 
-const frontEndSv =
-  "https://notememo-frontend-minified-production.up.railway.app";
+const frontEndSv = "https://notememo-frontend-minified.onrender.com";
 
 router.get(
   "/google",
