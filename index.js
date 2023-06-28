@@ -30,7 +30,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     // do this when implementing
-    cookie: { secure: true },
+    //cookie: { secure: true },
   })
 );
 
