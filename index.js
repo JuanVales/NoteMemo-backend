@@ -9,13 +9,12 @@ const authRoutes = require("./routes/authRoutes");
 const noteRoutes = require("./routes/noteRoutes");
 require("./config/Passport");
 const PORT = process.env.PORT || 3001;
-const frontEndSv = "https://leafy-squirrel-2117af.netlify.app";
 
 const app = express();
 
 app.use(
   cors({
-    origin: frontEndSv,
+    origin: process.env.FRONT_END_SV_URL,
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

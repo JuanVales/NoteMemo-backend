@@ -1,10 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const crypto = require("crypto");
-
-const frontEndSv = "https://leafy-squirrel-2117af.netlify.app";
 
 router.get(
   "/google",
@@ -14,10 +13,10 @@ router.get(
 router.get(
   "/google/notememo",
   passport.authenticate("google", {
-    failureRedirect: frontEndSv + "/login",
+    failureRedirect: process.env.FRONT_END_SV_URL + "/login",
   }),
   function (req, res) {
-    res.redirect(frontEndSv + "/notes");
+    res.redirect(process.env.FRONT_END_SV_URL + "/notes");
   }
 );
 
@@ -45,7 +44,7 @@ router.post("/login", async function (req, res, next) {
           return next(err);
         }
 
-        const redirectUrl = frontEndSv + "/notes";
+        const redirectUrl = process.env.FRONT_END_SV_URL + "/notes";
         return res.status(200).json({ redirectUrl });
       });
     })(req, res, next);
@@ -115,7 +114,7 @@ router.get("/logout", (req, res) => {
       console.log(err);
     }
   });
-  res.redirect(frontEndSv);
+  res.redirect(process.env.FRONT_END_SV_URL);
 });
 
 module.exports = router;
