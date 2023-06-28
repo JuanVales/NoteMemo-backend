@@ -9,7 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const noteRoutes = require("./routes/noteRoutes");
 require("./config/Passport");
 const PORT = process.env.PORT || 3001;
-const frontEndSv = "https://notememo-frontend-minified.onrender.com";
+const frontEndSv = "https://leafy-squirrel-2117af.netlify.app";
 
 const app = express();
 
