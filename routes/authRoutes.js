@@ -5,6 +5,8 @@ const router = express.Router();
 const User = require("../models/User");
 const crypto = require("crypto");
 
+const frontEndServer = "https://cool-fox-2193ca.netlify.app";
+
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -13,10 +15,10 @@ router.get(
 router.get(
   "/google/notememo",
   passport.authenticate("google", {
-    failureRedirect: process.env.FRONT_END_SV_URL + "/login",
+    failureRedirect: frontEndServer + "/login",
   }),
   function (req, res) {
-    res.redirect(process.env.FRONT_END_SV_URL + "/notes");
+    res.redirect(frontEndServer + "/notes");
   }
 );
 
@@ -45,7 +47,7 @@ router.post("/login", async function (req, res, next) {
           return next(err);
         }
         console.log("Login succssesfull");
-        const redirectUrl = process.env.FRONT_END_SV_URL + "/notes";
+        const redirectUrl = frontEndServer + "/notes";
         return res.status(200).json({ redirectUrl });
       });
     })(req, res, next);
@@ -74,7 +76,7 @@ router.post("/register", async function (req, res, next) {
               "Registration successful" + passport.authenticate("local")
             );
             passport.authenticate("local")(req, res, () => {
-              const redirectUrl = process.env.FRONT_END_SV_URL + "/notes";
+              const redirectUrl = frontEndServer + "/notes";
               res.status(200).json({ redirectUrl });
             });
           }
@@ -115,7 +117,7 @@ router.get("/logout", (req, res) => {
       console.log(err);
     }
   });
-  res.redirect(process.env.FRONT_END_SV_URL);
+  res.redirect(frontEndServer);
 });
 
 module.exports = router;
