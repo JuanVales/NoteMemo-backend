@@ -21,6 +21,7 @@ router.get(
 );
 
 router.post("/login", async function (req, res, next) {
+  console.log("Login route triggered");
   User.findOne({ username: req.body.username }).then((user) => {
     if (!user) {
       // User not registered
@@ -43,7 +44,7 @@ router.post("/login", async function (req, res, next) {
         if (err) {
           return next(err);
         }
-
+        console.log("Login succssesfull");
         const redirectUrl = process.env.FRONT_END_SV_URL + "/notes";
         return res.status(200).json({ redirectUrl });
       });
@@ -73,7 +74,7 @@ router.post("/register", async function (req, res, next) {
               "Registration successful" + passport.authenticate("local")
             );
             passport.authenticate("local")(req, res, () => {
-              const redirectUrl = frontEndSv + "/notes";
+              const redirectUrl = process.env.FRONT_END_SV_URL + "/notes";
               res.status(200).json({ redirectUrl });
             });
           }

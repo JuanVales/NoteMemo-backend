@@ -20,6 +20,7 @@ router.get("/getNotes", (req, res) => {
 });
 
 router.post("/createNote", async (req, res) => {
+  console.log("create note triggered");
   const id = req.user._id;
   const note = req.body;
   if (req.isAuthenticated()) {
