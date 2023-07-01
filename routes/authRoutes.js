@@ -14,10 +14,10 @@ router.get(
 router.get(
   "/google/notememo",
   passport.authenticate("google", {
-    failureRedirect: frontEndServer + "/login",
+    failureRedirect: frontEndServer,
   }),
   function (req, res) {
-    res.redirect(frontEndServer + "/notes");
+    res.redirect(frontEndServer);
   }
 );
 
@@ -46,7 +46,6 @@ router.post("/login", async function (req, res, next) {
           return next(err);
         }
         console.log("Login succssesfull");
-        const redirectUrl = frontEndServer + "/notes";
         return res.status(200).json({ user });
       });
     })(req, res, next);
@@ -75,7 +74,7 @@ router.post("/register", async function (req, res, next) {
               "Registration successful" + passport.authenticate("local")
             );
             passport.authenticate("local")(req, res, () => {
-              const redirectUrl = frontEndServer + "/notes";
+              const redirectUrl = frontEndServer;
               res.status(200).json({ redirectUrl });
             });
           }
