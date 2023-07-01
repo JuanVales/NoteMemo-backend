@@ -8,13 +8,14 @@ const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
 const noteRoutes = require("./routes/noteRoutes");
 require("./config/Passport");
+const { frontEndServer } = require("./config/config");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
 app.use(
   cors({
-    origin: "https://cool-fox-2193ca.netlify.app",
+    origin: frontEndServer,
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

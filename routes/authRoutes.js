@@ -4,8 +4,7 @@ const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const crypto = require("crypto");
-
-const frontEndServer = "https://cool-fox-2193ca.netlify.app";
+const { frontEndServer } = require("../config/config");
 
 router.get(
   "/google",
@@ -48,7 +47,7 @@ router.post("/login", async function (req, res, next) {
         }
         console.log("Login succssesfull");
         const redirectUrl = frontEndServer + "/notes";
-        return res.status(200).json({ redirectUrl });
+        return res.status(200).json({ user });
       });
     })(req, res, next);
   });
